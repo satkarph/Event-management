@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+
+{% if user.is_authenticated %}
+<h1> <a href="{% url 'list'  %}">Click to see the event cms</a></h1>
+{% else %}
+<h1>please login or register</h1>
+{% endif %}
+
+
+{% endblock content%}

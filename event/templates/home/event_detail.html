@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+<div class="jumbotron">
+
+
+
+    <ul class="list-group">
+        <li class="list-group-item active"> event name:{{ event_detail.event_name }}</li>
+        <li class="list-group-item">event name:description{{ event_detail.description }}</li>
+        <li class="list-group-item">date:{{ event_detail.date }}</li>
+        <li class="list-group-item">venue:{{ event_detail.venue }}</li>
+        <li class="list-group-item">venue_url:{{ event_detail.venue_url }}</li>
+        <li class="list-group-item">code:{{ event_detail.code }}</li>
+    </ul>
+</div>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+{% load bootstrap_tags %}
+
+{% block content%}
+
+<h1>
+{% if not form.instance.pk %}
+Create Event
+{% else %}
+Update Event
+{% endif %}
+</h1>
+<div class="container">
+<form  method="POST" >
+
+    {% csrf_token %}
+    {{ form | as_bootstrap}}
+    <input type="submit" class='btn btn-primary' value="Submit">
+
+
+</form>
+</div>
+
+
+
+
+{% endblock content %}

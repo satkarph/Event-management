@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+
+
+<a href="{% url 'create' %}"> <button type="button" class="btn btn-primary btn-sm">create</button></a>
+
+<div class="jumbotron">
+    {% for a in event %}
+
+
+
+
+            <div class="panel panel-primary food">
+                <div class="panel-heading">{{a.event_name}}</div>
+                <div class="panel-body"><li>{{a.date}}</li><li>{{a.venue}}</li>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            more
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="{{ a.id }}">detail</a><br>
+                            <a href="{% url 'update' a.id %}">update</a><br>
+                            <a href="{% url 'delete' a.id %}">delete</a><br>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+    {% endfor %}
+</div>
+{% endblock content %}
