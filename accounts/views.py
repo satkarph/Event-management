@@ -38,7 +38,7 @@ def register(request):
             
             if user is not None:
                 auth.login(request, user)
-                return redirect("/")
+                return redirect("login")
             else:
                 registration_form.add_error(None, "Can't log in now, try later.")
     else:
