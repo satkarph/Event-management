@@ -13,10 +13,15 @@ def get_index(request):
 
 
 class EventCreateView(CreateView):
-    fields = ("__all__")
+    fields = ['event_name', 'description','date','venue','venue_url','code']
     model = Event
     template_name = 'home/event_form.html'
     success_url="/list/"
+
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.user = user
+        return super(EventCreateView, self).form_valid(form)
 
 class EventListView(LoginRequiredMixin, ListView):
     template_name = 'home/event_list.html'
@@ -24,10 +29,16 @@ class EventListView(LoginRequiredMixin, ListView):
     model=Event
 
 
+    def get_queryset(self):
+        user=self.request.user
+        queryset = Event.objects.filter(user=self.request.user)
+        return queryset
+
 class EventDetailView(LoginRequiredMixin,DetailView):
     context_object_name = 'event_detail'
     model = Event
     template_name = 'home/event_detail.html'
+
 
 
 class EventUpdateView(LoginRequiredMixin,UpdateView):
@@ -35,9 +46,13 @@ class EventUpdateView(LoginRequiredMixin,UpdateView):
     model = Event
     template_name = 'home/event_form.html'
     success_url="/list/"
+    fields = ['event_name', 'description','date','venue','venue_url','code']
+
 
 
 class EventDeleteView(LoginRequiredMixin,DeleteView):
     model=Event
     template_name = 'home/confirm_delete.html'
+
     success_url="/list/"
+
